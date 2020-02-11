@@ -42,8 +42,11 @@ class Blog extends Component {
         } else {
             await this.props.getMessagesByDate(this.lastDateTime)
         }
+        if (this.props.date.length !== 0) {
             let messages = this.props.messages;
             this.lastDateTime = messages[messages.length - 1].datetime;
+        }
+
         };
 
     sendMessages = async (e) => {
