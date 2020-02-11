@@ -20,7 +20,6 @@ class Blog extends Component {
     };
 
     componentDidMount() {
-        this.props.getMessage()
        this.interval = setInterval(() => {
             this.getMessages()
         }, 2000)
@@ -49,11 +48,16 @@ class Blog extends Component {
 
     sendMessages = async (e) => {
       e.preventDefault();
-      const newMessage = {
-          author: this.state.author,
-          message: this.state.message
-      };
-      await this.props.sendMessage(newMessage);
+      if (this.state.author === '' || this.state.message === '') {
+          alert('Author and message must be present in the request')
+      }else {
+          const newMessage = {
+              author: this.state.author,
+              message: this.state.message
+          };
+          await this.props.sendMessage(newMessage);
+      }
+
     };
 
     componentDidUpdate() {
@@ -105,7 +109,8 @@ class Blog extends Component {
 }
 const mapStateToProps = state => ({
     messages: state.messages,
-    date: state.date
+    date: state.date,
+    error: state.error
 });
 const mapDispatchToProps = dispatch => ({
     getMessage: () => dispatch(getMessage()),

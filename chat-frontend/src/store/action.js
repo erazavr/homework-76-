@@ -43,7 +43,7 @@ export const sendMessage = newMessage => {
             await axiosApi.post('/messages', newMessage);
             dispatch(getMessage())
         } catch (e) {
-            dispatch(fetchMessageFailure(e))
+            dispatch(fetchMessageFailure(e.response.data))
 
         }
     }
