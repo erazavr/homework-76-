@@ -65,6 +65,7 @@ class Blog extends Component {
 
     inputValueChanged = event => this.setState({[event.target.name]: event.target.value});
     render() {
+        console.log('ghhbdtk')
         return (
             <Container>
                 {this.renderOnPage()}
